@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Deck Builder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Pokemon Deck Builder</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/decks">Decks</a></li>
+                <li><a href="/teams">Teams</a></li>
+                <li><a href="/favorites">Favorites</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="login-container">
+        <h1>Login</h1>
+        <form class="login-form" id="login-form">
+            <input type="email" class="login-input" placeholder="Email" required>
+            <input type="password" class="login-input" placeholder="Password" required>
+            <button type="submit" class="login-button">Login</button>
+            <p class="error-message" id="error-message"></p>
+        </form>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Pokemon Deck Builder</p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
+
+
