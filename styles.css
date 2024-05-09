@@ -44,3 +44,18 @@ button:hover {
     color: red;
     text-align: center;
 }
+
+/* New styles for search and login buttons */
+.search-button, .login-button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover, .login-button:hover {
+    background-color: #218838;
+}
