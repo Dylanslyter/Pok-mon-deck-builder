@@ -18,18 +18,6 @@ async function loginUser(req, res) {
         if (!passwordMatch) {
             return res.status(401).json({ error: 'Invalid password' });
         }
-
-        // Create a JSON Web Token (JWT) for authentication
-        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-            expiresIn: '1h', // Token expires in 1 hour
-        });
-
-        // Send the JWT token as a response
-        res.status(200).json({ token });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-}
+    }}
 
 module.exports = { loginUser }; // Export the loginUser function

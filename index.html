@@ -7,20 +7,26 @@
     <link rel="stylesheet" href="/public/css/styles.css">
 </head>
 <body>
+    <div class="background-container"></div>
     <header>
         <h1>Pokemon Deck Builder</h1>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/decks">Decks</a></li>
-                <li><a href="/teams">Teams</a></li>
-                <li><a href="/favorites">Favorites</a></li>
-                <li><a href="/logout">Logout</a></li>
+                <li><a href="#" class="decks-button">Decks</a></li>
+                <li><a href="#" class="teams-button">Teams</a></li>
+                <li><a href="#" class="favorites-button">Favorites</a></li>
+                <li><a href="#" class="logout-button">Logout</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <!-- Content goes here -->
+    <main class="login-container">
+        <h1>Login</h1>
+        <form class="login-form" id="login-form">
+            <input type="email" class="login-input" placeholder="Email" required>
+            <input type="password" class="login-input" placeholder="Password" required>
+            <button type="submit" class="login-button">Login</button>
+            <p class="error-message" id="error-message"></p>
+        </form>
     </main>
     <footer>
         <p>&copy; 2024 Pokemon Deck Builder</p>
@@ -28,3 +34,5 @@
     <script src="app.js"></script>
 </body>
 </html>
+
+
