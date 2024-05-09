@@ -1,4 +1,27 @@
-/* Styles for the navigation bar */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/N3DS_PokemonSuperMysteryDungeon_MainIllustration_png_jpgcopy.0.0.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+/* Rest of your CSS styles here */
+
+
+/* Rest of your CSS styles here */
+
+
 nav {
     text-align: center;
     margin-top: 20px;
