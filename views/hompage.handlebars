@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+</head>
+<body>
+    <div class="background-container"></div>
+    <header>
+        <h1>{{pageTitle}}</h1>
+        <nav>
+            <ul>
+                <li><a href="#" class="decks-button">Decks</a></li>
+                <li><a href="#" class="teams-button">Teams</a></li>
+                <li><a href="#" class="favorites-button">Favorites</a></li>
+                <li><a href="#" class="logout-button">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="login-container">
+        <h1>Login</h1>
+        <form class="login-form" id="login-form">
+            <input type="email" class="login-input" placeholder="Email" required>
+            <input type="password" class="login-input" placeholder="Password" required>
+            <button type="submit" class="login-button">Login</button>
+            <p class="error-message" id="error-message">{{errorMessage}}</p>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; {{currentYear}} Pokemon Deck Builder</p>
+    </footer>
+    <script src="{{scriptSrc}}"></script>
+</body>
+</html>
