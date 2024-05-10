@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pageTitle}}</title>
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <style>
+        /* Additional styles specific to the profile page */
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-header h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .profile-header p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .profile-details {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-details h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .profile-details p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{pageTitle}}</h1>
+        <nav>
+            <!-- Navigation links if needed -->
+        </nav>
+    </header>
+    <main>
+        <div class="profile-container">
+            <div class="profile-header">
+                <h1>Welcome, {{username}}!</h1>
+                <p>Here's your profile information:</p>
+            </div>
+            <div class="profile-details">
+                <h2>Profile Details</h2>
+                <p><strong>Name:</strong> {{name}}</p>
+                <p><strong>Email:</strong> {{email}}</p>
+                <p><strong>Age:</strong> {{age}}</p>
+                <!-- Add more profile details as needed -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; {{currentYear}} Pokemon Deck Builder</p>
+    </footer>
+</body>
+</html>
