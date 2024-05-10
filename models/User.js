@@ -2,6 +2,11 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const bcrypt = require('bcrypt');
 
+class user extends model {
+    checkPassword(password) {
+        return bcrypt.compare(password, this.password);}
+}    
+
 const validationRules = {
     id: {
         type: DataTypes.INTEGER,
@@ -30,10 +35,6 @@ const validationRules = {
     },
     };
 
-class user extends model {
-    checkPassword(password) {
-        return bcrypt.compare(password, this.password);}
-}    
 
 user.init(validationRules, {
     sequelize,
@@ -41,6 +42,9 @@ user.init(validationRules, {
     hooks: {
         beforeCreate: async (user) => {
             user.password = await bcrypt.hash(user.password, 10);
+            return user;
         }
     }
 });
+
+module.exports = user;
