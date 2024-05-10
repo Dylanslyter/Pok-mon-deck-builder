@@ -19,16 +19,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 // Define session
-// const sess  = {
-//     secret: 'Super secret secret', //not sure how to hash this
-//     cookie: {},
-//     resave: false,
-//     saveUninitialized: true,
-//     store: new sequelizeStore({
-//         db: sequelize
-//     })};
-
-// app.use(session(sess));
+const sessionConfig = {
+    secret: sessionSecret,
+    cookie: {
+        secure: true, // Cookies are only sent over HTTPS
+        maxAge: 24 * 60 * 60 * 1000, // Session expires after 1 day (adjust as needed)
+        httpOnly: true, // Cookies are not accessible via client-side JavaScript
+        sameSite: 'Lax' // Restrict cookies to same-site requests only
+    },
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore
+};
 
 // Define routes
 app.use('/api', require('./controllers/authRoutes'));
