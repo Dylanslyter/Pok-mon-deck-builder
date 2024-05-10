@@ -20,4 +20,20 @@ async function loginUser(req, res) {
         }
     }}
 
+    app.get('/', (req, res) => {
+        res.render('login', {
+            pageTitle: 'Pokemon Deck Builder',
+            currentYear: new Date().getFullYear(),
+            scriptSrc: '/app.js'
+        });
+    });
+
+    app.get('/', (req, res) => {
+        res.render('homepage', {
+            pageTitle: 'Pokemon Deck Builder',
+            currentYear: new Date().getFullYear(),
+            errorMessage: '', // Pass error message if needed
+            scriptSrc: '/app.js'
+        });
+    });
 module.exports = { loginUser }; // Export the loginUser function
