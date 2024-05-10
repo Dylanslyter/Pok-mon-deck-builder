@@ -1,3 +1,4 @@
 .env
 .eslintignore
 .prettierignore
+node_modules/

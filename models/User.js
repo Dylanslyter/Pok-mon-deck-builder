@@ -1,17 +1,50 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const bcrypt = require('bcrypt');
 
-// Define the User model with Sequelize
-const User = sequelize.define('User', {
-    // Define the username field with constraints
-    username: {
-        type: DataTypes.STRING,
+class user extends model {
+    checkPassword(password) {
+        return bcrypt.compare(password, this.password);}
+}    
+
+const validationRules = {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
         allowNull: false,
-        unique: true, // Ensure usernames are unique
     },
-    // Define the password field with constraints
+    name: {
+        type: DataTypes.STRING.trim(),
+        allowNull: false,
+    },
+    email: {
+        type: DataTypes.STRING.trim(),
+        allowNull: false,
+        unique: true,
+        validate: {
+            isEmail: true,
+        }
+    },
     password: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+            len: [6 - 255]
+        }
     },
+    };
+
+
+user.init(validationRules, {
+    sequelize,
+    modelName: 'user',
+    hooks: {
+        beforeCreate: async (user) => {
+            user.password = await bcrypt.hash(user.password, 10);
+            return user;
+        }
+    }
 });
+
+module.exports = user;
