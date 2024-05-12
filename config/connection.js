@@ -22,7 +22,7 @@ if (process.env.JAWSDB_URL) {
     logging: false,
     database: process.env.DB_NAME,
     username: process.env.DB_USER,
-    password: process.env.DB_PW,
+    password: process.env.DB_PASS,
   };
 }
 
