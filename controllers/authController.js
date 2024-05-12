@@ -22,7 +22,26 @@ async function loginUser(req, res) {
 }
 
 async function signupUser(req, res) {
-  res.json({ message: 'Signup successful' }); 
+  const bcrypt = require('bcryptjs');
+
+async function signupUser(req, res) {
+    try {
+        const { username, email, password } = req.body;
+        if (users.some(user => user.username === username || user.email === email)) {
+            return res.status(400).json({ error: 'Username or email already exists' });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = { username, email, password: hashedPassword };
+
+        users.push(newUser);
+
+        res.status(201).json({ message: 'Signup successful' });
+    } catch (error) {
+        console.error('Error during signup:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
 }
 
 module.exports = { loginUser, signupUser };
