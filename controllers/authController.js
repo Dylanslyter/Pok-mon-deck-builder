@@ -22,9 +22,7 @@ async function loginUser(req, res) {
 }
 
 async function signupUser(req, res) {
-  const bcrypt = require('bcryptjs');
 
-async function signupUser(req, res) {
     try {
         const { username, email, password } = req.body;
         if (users.some(user => user.username === username || user.email === email)) {
@@ -42,6 +40,6 @@ async function signupUser(req, res) {
         res.status(500).json({ error: 'Internal server error' });
     }
 }
-}
+
 
 module.exports = { loginUser, signupUser };
