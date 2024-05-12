@@ -1,39 +1,28 @@
-
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const User = require('../models/User');
 
 async function loginUser(req, res) {
-    const { username, password } = req.body;
+  const { username, password } = req.body;
 
-    try {
-        // Find user by username in the database
-        const user = await User.findOne({ where: { username } });
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
+  try {
+    const user = await User.findOne({ where: { username } });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
 
-        // Compare the provided password with the hashed password stored in the database
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
-            return res.status(401).json({ error: 'Invalid password' });
-        }
-    }}
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ error: 'Invalid password' });
+    }
 
-    app.get('/', (req, res) => {
-        res.render('login', {
-            pageTitle: 'Pokemon Deck Builder',
-            currentYear: new Date().getFullYear(),
-            scriptSrc: '/app.js'
-        });
-    });
+    res.json({ message: 'Login successful' }); 
+  } catch (error) {
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+}
 
-    app.get('/', (req, res) => {
-        res.render('homepage', {
-            pageTitle: 'Pokemon Deck Builder',
-            currentYear: new Date().getFullYear(),
-            errorMessage: '', // Pass error message if needed
-            scriptSrc: '/app.js'
-        });
-    });
-module.exports = { loginUser }; // Export the loginUser function
+async function signupUser(req, res) {
+  res.json({ message: 'Signup successful' }); 
+}
+
+module.exports = { loginUser, signupUser };

@@ -1,10 +1,9 @@
 const { Sequelize } = require('sequelize');
 
-// Initialize Sequelize with database connection details
-const sequelize = new Sequelize('database_name', 'username', 'password', {
-    host: 'localhost',
-    dialect: 'mysql',
-    logging: false // Disable logging to console
+const sequelize = new Sequelize('database', 'username', 'password', {
+  host: 'localhost',
+  dialect: 'mysql',
+  logging: false,
 });
 
-module.exports = sequelize; // Export the initialized Sequelize instance
+module.exports = sequelize;
