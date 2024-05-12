@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const User = require('../models/User');
+const User = require('../../models/User');
 
 async function loginUser(req, res) {
   const { username, password } = req.body;
@@ -7,24 +7,20 @@ async function loginUser(req, res) {
   if (!username || typeof username !== 'string' || username.length < 3) {
     return res.status(400).json({ error: 'Invalid search parameter: username' });
   }
-
   try {
     const user = await User.findOne({ where: { username } });
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
-
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Invalid password' });
     }
-
     res.json({ message: 'Login successful' }); 
   } catch (error) {
     return res.status(500).json({ error: 'Internal server error' });
   }
 }
-
 async function signupUser(req, res) {
 
     try {
@@ -46,4 +42,11 @@ async function signupUser(req, res) {
 }
 
 
-module.exports = { loginUser, signupUser };
+async function logout(req, res) {
+   
+  res.clearCookie('user');
+  res.redirect('/');
+}
+
+module.exports = { loginUser, signupUser, logout };
+
