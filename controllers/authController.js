@@ -4,6 +4,10 @@ const User = require('../models/User');
 async function loginUser(req, res) {
   const { username, password } = req.body;
 
+  if (!username || typeof username !== 'string' || username.length < 3) {
+    return res.status(400).json({ error: 'Invalid search parameter: username' });
+  }
+
   try {
     const user = await User.findOne({ where: { username } });
     if (!user) {
