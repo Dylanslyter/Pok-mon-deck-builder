@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { loginUser } = require('../controllers/authController');
+const { loginUser, signupUser } = require('./authController'); // Update the import statement
 
-// Define the login route which uses the loginUser controller function
-router.post('/login', loginUser);
+router.post('/login', loginUser); // Update the function reference
+router.post('/signup', signupUser); // Update the function reference
 
-module.exports = router; // Export the router
+module.exports = router;
