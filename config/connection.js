@@ -37,3 +37,4 @@ instance.authenticate()
   });
 
 module.exports = { sequelize: instance };
+
