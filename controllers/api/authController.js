@@ -22,7 +22,7 @@ async function loginUser(req, res) {
     return res.status(500).json({ error: 'Internal server error' });
 
   }
-}
+};
 async function signupUser(req, res) {
 
     try {
@@ -32,17 +32,20 @@ async function signupUser(req, res) {
         if (user) {
             return res.status(400).json({ error: 'Email already exists' });
         };
-        const newUser = await User.create(req.body);
+
+        const hashedPassword = await bcrypt.hash(password,10);
+        const newUser = await User.create({ ...req.body, password:hashedPassword} );
         res.status(201).json({ message: 'Signup successful' });
-    } catch (error) {
+        } 
+
+    catch (error) {
         console.error('Error during signup:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-}
+  };
 
 
-async function logout(req, res) {
-   
+async function logout(req, res) { 
   res.clearCookie('user');
   res.redirect('/');
 }
