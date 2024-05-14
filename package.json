@@ -16,5 +16,8 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
     "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "start": "node server.js"
   }
 }
