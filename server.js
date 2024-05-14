@@ -35,8 +35,13 @@ const expressHandlebars = require('express-handlebars');
 const handlebars = expressHandlebars.create({});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+sequelize.sync({
+  force:false
+}).then(() => {
+  app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+  });
 });
+
 
 
