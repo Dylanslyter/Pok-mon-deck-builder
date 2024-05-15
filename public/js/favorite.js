@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.reload();
     } else {
       alert(`${pokemonName} is not in favorites!`);
-    }
-  }
+
 
 
