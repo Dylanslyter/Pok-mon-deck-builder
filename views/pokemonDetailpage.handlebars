@@ -1,0 +1,14 @@
+    <main>
+        <h1>Pokemon Detail</h1>
+   <img src="{{data.sprites.front_default}}">
+   <h3>Abilities</h3>
+<ul>{{#each data.abilities}}
+  <li>{{ability.name}}</li>
+{{/each}}</ul>
+   <h3>Moves</h3>
+<ul>{{#each data.moves}}
+  <li>{{move.name}}</li>
+{{/each}}</ul>
+    </main>
+
+
