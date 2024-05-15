@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const { User } = require('../../models/');
 
-async function loginUser(req, res) {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || typeof email !== 'string' || email.length < 3) {
@@ -16,13 +16,19 @@ async function loginUser(req, res) {
     if (!passwordMatch) {
       return res.status(401).json({ error: 'Invalid password' });
     }
-    res.json({ message: 'Login successful' }); 
+
+    req.session.userId = user.id;
+    req.session.email = user.email;
+
+    res.cookie('user', user.id, { httpOnly: true });
+
+    res.json({ message: 'Login successful' });
   } catch (error) {
     console.error(error)
     return res.status(500).json({ error: 'Internal server error' });
-
   }
 };
+
 async function signupUser(req, res) {
 
     try {
@@ -45,10 +51,18 @@ async function signupUser(req, res) {
   };
 
 
-async function logout(req, res) { 
-  res.clearCookie('user');
-  res.redirect('/');
-}
+  const logout = (req, res) => {
+    req.session.destroy((error) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+  
+      res.clearCookie('user');
+  
+      res.redirect('/');
+    });
+  };
 
 module.exports = { loginUser, signupUser, logout };
 

@@ -23,6 +23,16 @@ const seedUsers = async () => {
 
 };
 
+const seedPokemon = async () => {
+    try {
+        await Pokemon.bulkCreate(pokemonData);
+        console.log('Pokemon seeded successfully');
+    } catch (error) {
+        console.error('Error seeding Pokemon:', error);
+    }
+}
+
+seedPokemon();
 seedUsers();
 
 // to be written. seedPokemon, seedFavorites, seedTeams
