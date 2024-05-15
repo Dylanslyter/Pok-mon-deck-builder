@@ -6,6 +6,52 @@ padding: 0;
 background-color: #f8f9fa;
 }
 
+.pokemon-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.favorite-button {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('path/to/star-icon.png'); 
+    background-size: cover;
+    cursor: pointer; 
+}
+
+.favorite-button:hover {
+    opacity: 0.7; 
+    color:#f2960b
+}
+
+.pokemon-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+.pokemon-link {
+    display: block;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #f2960b;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+.pokemon-link:hover {
+    background-color: #f2960b; 
+    color: #efeeee;
+}
+
 .background-container {
 position: fixed;
 top: 0;
@@ -65,7 +111,7 @@ background-color: #797478;
 transform: translateY(-2px);
 }
 
-/* Additional styles for individual buttons */
+
 .decks-button::before, .teams-button::before, .favorites-button::before, .logout-button::before {
 content: '';
 position: absolute;
@@ -87,7 +133,7 @@ transform: scale(1);
 background-color: #797478;
 }
 
-/* Styles for the login box */
+
 .login-container {
 max-width: 400px;
 margin: 50px auto;
