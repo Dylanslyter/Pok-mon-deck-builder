@@ -5,7 +5,7 @@ async function loginUser(req, res) {
   const { email, password } = req.body;
 
   if (!email || typeof email !== 'string' || email.length < 3) {
-    return res.status(400).json({ error: 'Invalid search parameter: email' });
+    return res.status(400).json({ error: 'Invalid email' });
   }
   try {
     const user = await User.findOne({ where: { email } });
