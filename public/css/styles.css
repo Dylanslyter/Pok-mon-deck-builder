@@ -83,26 +83,26 @@ display: inline;
 margin: 0 10px;
 }
 
-nav ul li a {
+/* nav ul li a {
 text-decoration: none;
 padding: 10px 20px;
 border-radius: 5px;
 transition: background-color 0.3s ease;
 color: #fff;
-background-color: #007bff;
-}
+background-color: #009c15;
+} */
 
 nav ul li a:hover {
 background-color: #0056b3;
 }
 
-.decks-button, .teams-button, .favorites-button, .logout-button {
+.decks-button, .pokemon-button, .favorites-button, .logout-button {
 display: inline-block;
 padding: 15px 30px;
 margin: 10px;
 border-radius: 10px;
 border: none;
-background-color: #030304;
+background-color: #1d1c1c;
 color: #f2960b;
 font-size: 18px;
 text-decoration: none;
