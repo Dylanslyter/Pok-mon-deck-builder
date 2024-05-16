@@ -1,9 +1,4 @@
-const bcrypt = require('bcrypt');
 
-const hashedPassword = async (password) => {
-    const salt = await bcrypt.genSalt(10);
-    return await bcrypt.hash(password, salt);
-};
 
 const validateInput = (email, password) => {
     if (!email || !password) {
@@ -11,7 +6,6 @@ const validateInput = (email, password) => {
     }
     return true;
 }
-
 
 const loginFormHandler = async (event) => {
     event.preventDefault();
@@ -21,14 +15,13 @@ const loginFormHandler = async (event) => {
 
     try {
         validateInput(email, password);
-        const hashedPassword = await hashedPassword(password);
-        const response = await fetch('controllers/api/authController', {
+        const response = await fetch('/api/login', {
             method: 'POST',
-            body: JSON.stringify({ email, hashedPassword }),
+            body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.replace('/main');
+            document.location.replace('/deck');
         } else {
             alert('Failed to log in');
         }
@@ -49,14 +42,14 @@ const signupFormHandler = async (event) => {
     if (name && email && password) {
         try {
             validateInput(email, password);
-            const hashedPassword = await hashedPassword(password);
-            const response = await fetch('controllers/api/authController', {
+
+            const response = await fetch('/api/signup', {
                 method: 'POST',
-                body: JSON.stringify({ name, email, hashedPassword }),
+                body: JSON.stringify({ name, email, password }),
                 headers: { 'Content-Type': 'application/json' },
             });
             if (response.ok) {
-                document.location.replace('/main');
+                document.location.replace('/deck');
             } else {
                 alert('Failed to sign up');
             }
@@ -68,4 +61,5 @@ const signupFormHandler = async (event) => {
     }
 };
 
-
+const loginButton = document.querySelector('#login');
+loginButton.addEventListener('click', loginFormHandler)
