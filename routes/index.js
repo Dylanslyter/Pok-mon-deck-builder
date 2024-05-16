@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { login, deck, pokemonList, pokemonDetail, favorite } = require('../controllers/homeController');
+const { signup, login, deck, pokemonList, pokemonDetail, favorite } = require('../controllers/homeController');
 
+router.get ('/signup', signup)
 router.get ('/', login)
 router.get ('/deck', deck)
 router.get ('/pokemon', pokemonList)

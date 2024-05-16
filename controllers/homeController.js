@@ -1,5 +1,7 @@
 const axios = require('axios');
-
+async function signup(req, res) {
+    res.render("signuppage", {pageTitle: "pokémon deck builder"})
+}
 async function login(req, res) {
     res.render("loginpage", {pageTitle: "pokémon deck builder"})
 }
@@ -27,5 +29,5 @@ async function pokemonDetail(req, res) {
         res.render("pokemonDetailpage", { pageTitle: "Pokémon Deck Builder", data:response.data });
 
 }
-module.exports = { login, deck, pokemonList,
+module.exports = { signup, login, deck, pokemonList,
     pokemonDetail, favorite };
