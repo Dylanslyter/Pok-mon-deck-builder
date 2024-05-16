@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  function handleFavoriteClick(event) {
+function handleFavoriteClick(event) {
     event.preventDefault();
     const pokemonName = event.target.dataset.name;
     const isFavoritesPage = window.location.pathname === '/favorite';
@@ -20,15 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //needs to write to .json file instead of local storage
-  function getFavoritesFromStorage() {
+function getFavoritesFromStorage() {
     return JSON.parse(localStorage.getItem('favorites')) || [];
   }
 //needs to write to .json file instead of local storage
-  function saveFavoritesToStorage(favorites) {
+function saveFavoritesToStorage(favorites) {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }
   
-  function addToFavorites(pokemonName) {
+function addToFavorites(pokemonName) {
     const favorites = getFavoritesFromStorage();
     if (!favorites.includes(pokemonName)) {
       favorites.push(pokemonName);
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  function removeFromFavorites(pokemonName) {
+function removeFromFavorites(pokemonName) {
     const favorites = getFavoritesFromStorage();
     if (favorites.includes(pokemonName)) {
       favorites = favorites.filter(name => name!== pokemonName);
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert(`${pokemonName} removed from favorites!`);
       window.location.reload();
     } else {
-      alert(`${pokemonName} is not in favorites!`);
+      alert(`${pokemonName} is not in favorites!`);}
 
 
 
