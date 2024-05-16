@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const { User } = require('../../models/');
+const session = require('express-session');
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -17,10 +18,12 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ error: 'Invalid password' });
     }
 
-    req.session.userId = user.id;
-    req.session.email = user.email;
-
-    res.cookie('user', user.id, { httpOnly: true });
+    req.session.save(() => {
+      req.session.user = user;
+      req.session.loggedIn = true;
+    
+      res.json({ 'Login successful' });
+    })
 
     res.json({ message: 'Login successful' });
   } catch (error) {
