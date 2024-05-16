@@ -1,8 +1,8 @@
     <main>
-        <h1>Teams</h1>
+        <h1>Pokedex</h1>
            {{#each data.results}}
-    <div>
-    <a href ="/pokemon/{{name}}" >{{name}}</a>
+    <div class= "pokemon-item-box">
+    {{!-- <a href ="/pokemon/{{name}}" >{{name}}</a>  --}}
     <div class="pokemon-item">
             <a href="/pokemon/{{name}}" class="pokemon-link">{{name}}</a>
           <span class="favorite-button" data-name="{{name}}">☆</span>
