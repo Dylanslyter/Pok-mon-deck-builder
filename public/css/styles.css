@@ -169,6 +169,7 @@ margin-bottom: 20px;
 padding: 10px;
 border: 1px solid #ccc;
 border-radius: 5px;
+color: #fff;
 }
 
 .login-button {
@@ -188,4 +189,25 @@ background-color: #797478;
 color: red;
 text-align: center;
 margin-top: 10px;
+}
+
+h2 {
+    margin-left: 95px;
+    display: flex;
+    color: #ffffff;
+    width: 85px;
+    align-content: center;
+    padding: 3px;
+    justify-content: center;
+}
+
+.form-group {
+    margin-left: 25px;
+    color: #ffffff;
+}
+
+.form.form.login-form {
+    align-items: flex-end;
+    width: 280px;
+    
 }
