@@ -49,5 +49,5 @@ function removeFromFavorites(pokemonName) {
     } else {
       alert(`${pokemonName} is not in favorites!`);}
 
-
+    }
 
