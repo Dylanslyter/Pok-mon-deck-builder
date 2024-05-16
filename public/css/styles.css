@@ -9,10 +9,11 @@ background-color: #f8f9fa;
 .pokemon-item {
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #f8f8f8;
+    background-color: #1d1c1c;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    min-width: 200px;
 }
 
 .favorite-button {
@@ -36,7 +37,7 @@ background-color: #f8f9fa;
 
 
 .pokemon-link {
-    display: block;
+    display: flex;
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
@@ -44,6 +45,8 @@ background-color: #f8f9fa;
     color: #f2960b;
     border-radius: 10px;
     transition: background-color 0.3s, color 0.3s;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -209,5 +212,17 @@ h2 {
 .form.form.login-form {
     align-items: flex-end;
     width: 280px;
+    
+}
+
+main {
+    color: #fff;
+    align-items: center;
+    border: 1px solid #000000;
+    background-color: #79747871;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 20px;
+    margin: 0px 20px 0px 20px;
     
 }
