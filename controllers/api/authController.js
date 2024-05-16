@@ -22,7 +22,7 @@ const loginUser = async (req, res) => {
       req.session.user = user;
       req.session.loggedIn = true;
     
-      res.json({ 'Login successful' });
+      res.json({ message: 'Login successful' });
     })
 
     res.json({ message: 'Login successful' });
