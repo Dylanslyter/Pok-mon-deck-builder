@@ -19,53 +19,57 @@ const loginUser = async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.user = user;
+      req.session.userId = user.id;
       req.session.loggedIn = true;
-    
-      res.json({ message: 'Login successful' });
-    })
 
-    res.json({ message: 'Login successful' });
+      return res.json({ message: 'Login successful' });
+    });
+
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
 
 async function signupUser(req, res) {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ where: { email } });
 
-    try {
-        const { email, password } = req.body;
-        const user = await User.findOne({ where: { email } });
-      
-        if (user) {
-            return res.status(400).json({ error: 'Email already exists' });
-        };
-
-        const hashedPassword = await bcrypt.hash(password,10);
-        const newUser = await User.create({ ...req.body, password:hashedPassword} );
-        res.status(201).json({ message: 'Signup successful' });
-        } 
-
-    catch (error) {
-        console.error('Error during signup:', error);
-        res.status(500).json({ error: 'Internal server error' });
+    if (user) {
+      console.error('Email already exists');
+      return res.status(400).json({ error: 'Email already exists' });
     }
-  };
 
-
-  const logout = (req, res) => {
-    req.session.destroy((error) => {
-      if (error) {
-        console.error(error);
-        return res.status(500).json({ error: 'Internal server error' });
-      }
-  
-      res.clearCookie('user');
-  
-      res.redirect('/');
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await User.create({
+      ...req.body,
+      password: hashedPassword,
     });
-  };
+
+    req.session.save(() => {
+      req.session.userId = user.id;
+      req.session.loggedIn = true;
+
+      return res.status(201).json({ message: 'Signup successful' });
+    });
+  } catch (error) {
+    console.error('Error during signup:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+const logout = (req, res) => {
+  req.session.destroy((error) => {
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+
+    res.clearCookie('user');
+
+    res.redirect('/');
+  });
+};
 
 module.exports = { loginUser, signupUser, logout };
-
