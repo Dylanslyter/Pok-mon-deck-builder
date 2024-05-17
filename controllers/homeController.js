@@ -1,4 +1,6 @@
 const axios = require('axios');
+const { Favorite } = require('../models/index');
+
 async function signup(req, res) {
     res.render("signuppage", {pageTitle: "pokémon deck builder"})
 }
@@ -14,15 +16,11 @@ async function favorite(req, res) {
 async function pokemonList(req, res) {
     const base = "https://pokeapi.co/api/v2/";
     const path = "pokemon?limit=100000&offset=0";
-    const myFavorites = [
-        {
-            pokemonId: 6,
-
-        }, 
-        {
-            pokemonId: 9,
+    const myFavorites = await Favorite.findAll({
+        where: {
+            userId: req.session.userId
         }
-    ];
+    })
 
     const response = await axios.get(`${base}${path}`);
     const data = response.data;
