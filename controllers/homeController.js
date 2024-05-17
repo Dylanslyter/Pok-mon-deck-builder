@@ -14,11 +14,30 @@ async function favorite(req, res) {
 async function pokemonList(req, res) {
     const base = "https://pokeapi.co/api/v2/";
     const path = "pokemon?limit=100000&offset=0";
+    const myFavorites = [
+        {
+            pokemonId: 6,
+
+        }, 
+        {
+            pokemonId: 9,
+        }
+    ];
 
     const response = await axios.get(`${base}${path}`);
     const data = response.data;
     console.log(data)
-    res.render("pokemonListpage", {pageTitle: "pokémon deck builder", data: data})
+    const pokemon = data.results.map(result => {
+        const urlParts = result.url.split('/');
+        const id = parseInt(urlParts[urlParts.length -2]);
+        return {
+        ...result,
+        id,
+        favorited: Boolean(myFavorites.find(favorite => favorite.pokemonId === id))
+    }
+    });
+    console.log(pokemon)
+    res.render("pokemonListpage", {pageTitle: "pokémon deck builder", data: pokemon})
 }
 async function pokemonDetail(req, res) {
  

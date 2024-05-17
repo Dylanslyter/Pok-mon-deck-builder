@@ -48,7 +48,7 @@ async function signupUser(req, res) {
     });
 
     req.session.save(() => {
-      req.session.userId = user.id;
+      req.session.userId = newUser.id;
       req.session.loggedIn = true;
 
       return res.status(201).json({ message: 'Signup successful' });
