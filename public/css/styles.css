@@ -109,13 +109,24 @@ text-decoration: none;
 transition: transform 0.2s, background-color 0.3s;
 }
 
-.decks-button:hover, .teams-button:hover, .favorites-button:hover, .logout-button:hover {
-background-color: #797478;
+.decks-button:hover, .teams-button:hover {
+background-color: #008337;
 transform: translateY(-2px);
+color: #ffffff;
+}
+
+.favorites-button:hover {
+    background-color: #ff3c00;
+    color: #000000;
+}
+
+.logout-button:hover {
+    background-color: #e5ff00;
+    color: #000000;
 }
 
 
-.decks-button::before, .teams-button::before, .favorites-button::before, .logout-button::before {
+/* .decks-button::before, .teams-button::before, .favorites-button::before, .logout-button::before {
 content: '';
 position: absolute;
 top: 0;
@@ -128,13 +139,13 @@ border-radius: 10px;
 transition: opacity 0.3s, transform 0.3s;
 opacity: 0;
 transform: scale(0.9);
-}
+} */
 
-.decks-button:hover::before, .teams-button:hover::before, .favorites-button:hover::before, .logout-button:hover::before {
+/* .decks-button:hover::before, .teams-button:hover::before, .favorites-button:hover::before, .logout-button:hover::before {
 opacity: 1;
 transform: scale(1);
 background-color: #797478;
-}
+} */
 
 
 .login-container {
