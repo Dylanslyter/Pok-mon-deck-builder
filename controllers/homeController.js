@@ -4,15 +4,23 @@ const { Favorite } = require('../models/index');
 async function signup(req, res) {
     res.render("signuppage", {pageTitle: "pokémon deck builder"})
 }
+
 async function login(req, res) {
     res.render("loginpage", {pageTitle: "pokémon deck builder"})
 }
+
 async function deck(req, res) {
     res.render("deckspage", {pageTitle: "pokémon deck builder"})
 }
+
 async function favorite(req, res) {
-    res.render("favoritespage", {pageTitle: "pokémon deck builder"})
+    const pokemonFavorites = await Favorite.findAll({
+        order: [['pokemonId', 'ASC']],
+      });
+    res.render("favoritespage", {pageTitle: "pokémon deck builder", favorites:pokemonFavorites })
+   
 }
+
 async function pokemonList(req, res) {
     const base = "https://pokeapi.co/api/v2/";
     const path = "pokemon?limit=100000&offset=0";

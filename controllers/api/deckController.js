@@ -26,38 +26,40 @@ async function addToFavorites(req, res) {
   const { pokemonId } = req.body;
   const favorite = await Favorite.findOne({
     where: {
-        userId: req.session.userId,
-        pokemonId
-    }
-  })
+      userId: req.session.userId,
+      pokemonId,
+      // pokemonName
+    },
+  });
 
-   if(favorite){
-        await favorite.destroy();
-        return res.json({ Message: 'Pokemon removed from favorites!' });
-
-   } else{
-        await Favorite.create({
-            userId: req.session.userId,
-            pokemonId
-        })
-        return res.json({ Message: 'Pokemon added to favorites!' });
-
-   }
-};
-
-async function getFavorites(req, res) {
-  const favorites = req.user.favorites || [];
-  const favoritePokemon = await Promise.all(
-    favorites.map(async (id) => {
-      const response = await axios.get(`${APIBase}pokemon/${id}`);
-      return response.data;
-    }),
-  );
-
-  res.json(favoritePokemon);
+  if (favorite) {
+    await favorite.destroy();
+    return res.json({ Message: 'Pokemon removed from favorites!' });
+  } else {
+    await Favorite.create({
+      userId: req.session.userId,
+      pokemonId,
+      // pokemonName
+    });
+    return res.json({ Message: 'Pokemon added to favorites!' });
+  }
 }
 
-module.exports = { deckList, addToFavorites, getFavorites };
+
+
+// async function getFavorites(req, res) {
+//   const favorites = req.user.favorites || [];
+//   const favoritePokemon = await Promise.all(
+//     favorites.map(async (id) => {
+//       const response = await axios.get(`${APIBase}pokemon/${id}`);
+//       return response.data;
+//     }),
+//   );
+
+//   res.json(favoritePokemon);
+// }
+
+module.exports = { deckList, addToFavorites };
 
 // async function deckList(req, res) {
 //     try {
@@ -73,4 +75,3 @@ module.exports = { deckList, addToFavorites, getFavorites };
 //         res.status(500).json({ error: 'Internal server error' });
 //     }
 // }
-

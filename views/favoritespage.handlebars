@@ -1,14 +1,16 @@
 <main>
-    <h1>Favorites</h1>
-    {{#if favorites.length}}
-        <ul>
-            {{#each favorites}}
-                <li>{{this}}</li>
-            {{/each}}
-        </ul>
-    {{else}}
-        <p>No favorites added yet.</p>
-    {{/if}}
+  <h1>Favorites</h1>
+  {{#if favorites.length}}
+    <ul id="pokemon-list">
+      {{#each favorites}}
+        <li data-id="{{id}}" data-favorited="true">
+          <span>{{this.pokemonId}}</span>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No favorites added yet.</p>
+  {{/if}}
 </main>
 
-
+<script src="/js/favorite.js"> </script>

@@ -57,7 +57,7 @@ async function signupUser(req, res) {
     console.error('Error during signup:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
-}
+};
 
 const logout = (req, res) => {
   req.session.destroy((error) => {

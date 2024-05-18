@@ -7,6 +7,8 @@ const session = require('express-session');
 const apiRoutes = require('./routes/api');
 const webRoutes = require('./routes/index');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+const Handlebars = require('handlebars')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -31,7 +33,7 @@ app.use('/api', apiRoutes);
 app.use('/', webRoutes);
 
 const expressHandlebars = require('express-handlebars');
-const handlebars = expressHandlebars.create({});
+const handlebars = expressHandlebars.create({handlebars: allowInsecurePrototypeAccess(Handlebars)});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 sequelize.sync({

@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../config/connection');
+// const { all } = require('axios');
 
 class Favorite extends Sequelize.Model {}
 
@@ -18,12 +19,17 @@ const validationRules = {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true
-  },
+  }
+//   pokemonName: {
+//     type: DataTypes.STRING,
+//     allowNull: false,
+//     primaryKey: true
+//   }
 };
 
 Favorite.init(validationRules, {
   sequelize,
-  modelName: 'favorite',
+  modelName: 'favorite'
 });
 
 module.exports = Favorite;
