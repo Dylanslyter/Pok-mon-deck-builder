@@ -19,6 +19,7 @@ if (process.env.JAWSDB_URL) {
 
 const instance = new Sequelize(config);
 
+module.exports = { sequelize: instance };
 // instance.authenticate()
 //   .then(() => {
 //     console.log('Database connection established');
@@ -28,5 +29,4 @@ const instance = new Sequelize(config);
 //   });
 
 
-module.exports = { sequelize: instance };
 
