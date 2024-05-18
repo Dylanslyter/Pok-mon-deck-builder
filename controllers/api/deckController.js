@@ -23,12 +23,13 @@ async function deckList(req, res) {
 }
 
 async function addToFavorites(req, res) {
-  const { pokemonId } = req.body;
+    console.log(req.body);
+  const { pokemonId, pokemonName } = req.body;
   const favorite = await Favorite.findOne({
     where: {
       userId: req.session.userId,
-      pokemonId,
-      // pokemonName
+      pokemonId: pokemonId,
+      pokemonName: pokemonName
     },
   });
 
@@ -38,8 +39,8 @@ async function addToFavorites(req, res) {
   } else {
     await Favorite.create({
       userId: req.session.userId,
-      pokemonId,
-      // pokemonName
+      pokemonId: pokemonId,
+      pokemonName: pokemonName
     });
     return res.json({ Message: 'Pokemon added to favorites!' });
   }
