@@ -8,10 +8,11 @@ if (pokemonlist){
           return;
         }
         const favorite = e.target;
-        console.log(favorite)
         const data = {
-          pokemonId: favorite.dataset.name,
+          pokemonId: favorite.dataset.id,
+          pokemonName: favorite.dataset.name
         };
+        console.log(data);
         const response = await fetch('/api/favorite', {
           method: 'POST',
           body: JSON.stringify(data),
@@ -25,6 +26,8 @@ if (pokemonlist){
         console.log(response)
         if (response.ok) {
           console.log(await response.json());
+          console.log(favorite)
+
           if (favorite.dataset.favorited === 'false') {
             favorite.style = 'color: yellow';
             favorite.dataset.favorited = 'true';

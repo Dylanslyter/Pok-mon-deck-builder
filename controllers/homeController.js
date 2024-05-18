@@ -32,17 +32,16 @@ async function pokemonList(req, res) {
 
     const response = await axios.get(`${base}${path}`);
     const data = response.data;
-    console.log(data)
     const pokemon = data.results.map(result => {
         const urlParts = result.url.split('/');
         const id = parseInt(urlParts[urlParts.length -2]);
+        console.log(urlParts);
         return {
         ...result,
         id,
-        favorited: Boolean(myFavorites.find(favorite => favorite.pokemonId === id))
+        favorited: Boolean(myFavorites.find(favorite => favorite.pokemonId == id))
     }
     });
-    console.log(pokemon)
     res.render("pokemonListpage", {pageTitle: "pokémon deck builder", data: pokemon})
 }
 async function pokemonDetail(req, res) {
