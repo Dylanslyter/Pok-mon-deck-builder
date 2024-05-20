@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { loginUser, signupUser, logout } = require('../controllers/api/authController'); 
-const { deckList, addToFavorites } = require('../controllers/api/deckController');
+const { deckList, addToFavorites } = require('../controllers/api/projectController');
 const withAuth = require('../utils/auth')
 
 // /api/login

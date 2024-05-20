@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../config/connection');
 const bcrypt = require('bcrypt');
 
-class User extends Sequelize.Model {}
+class User extends Sequelize.Model {};
 
 const validationRules = {
   id: {

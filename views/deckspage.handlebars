@@ -1,6 +1,14 @@
     
     <main class="deck-container">
         <h1>Decks</h1>
+        <div id="deck-list">
+            {{#each data}}
+                <div class="deck-item-box">
+                    <div class="deck-item">
+                        <a href="/deck/{{id}}" class="deck-link">{{name}}</a>
+                    </div>
+                </div>
+            {{/each}}
 
     </main>
 

@@ -1,17 +1,18 @@
 const pokemonlist = document.querySelector('#pokemon-list');
-
-
+// const favoriteList = document.querySelector('#favorite-list');
+document.querySelector('#searchInput').addEventListener('keyup', fuzzySearch);
 
 if (pokemonlist){
     pokemonlist.addEventListener('click', async (e) => {
-        if (!e.target.matches('span')) {
+        if (!e.target.matches('a')) {
           return;
         }
         const favorite = e.target;
-        console.log(favorite)
         const data = {
-          pokemonId: favorite.dataset.name,
+          pokemonId: favorite.dataset.id,
+          pokemonName: favorite.dataset.name
         };
+        console.log(data);
         const response = await fetch('/api/favorite', {
           method: 'POST',
           body: JSON.stringify(data),
@@ -25,6 +26,8 @@ if (pokemonlist){
         console.log(response)
         if (response.ok) {
           console.log(await response.json());
+          console.log(favorite)
+
           if (favorite.dataset.favorited === 'false') {
             favorite.style = 'color: yellow';
             favorite.dataset.favorited = 'true';
@@ -34,9 +37,26 @@ if (pokemonlist){
           }
         }
       });
+};
+
+function fuzzySearch(){
+    let input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('searchInput');
+    filter = input.value.toLowerCase();
+    ul = document.getElementById('pokemon-list');
+    li = ul.getElementsByTagName('li');
+
+    for (i = 0; i < li.length; i++){
+        a = li[i].getElementsByTagName('a')[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toLowerCase().indexOf(filter) > -1){
+            li[i].style.display = '';
+        } else {
+            li[i].style.display = 'none';
+        }
+    }
 }
 
-// moved to homecontroller
 // async function populateFavorites() {
 //     const response = await fetch('/api/favorite', {
 //         method: 'GET',
@@ -51,13 +71,8 @@ if (pokemonlist){
 //         let HTML = ""
 //         let data = await response.json()
 //         data.pokemonFavorites.forEach((p) => {
-//             p.pokemonId
+//             HTML += `<li>${p.pokemonName}</li>`
 //         })
+//         favoriteList.innerHTML = HTML
 //       }
 // };
-
-
-// window.onload = (event) => { 
-//     populateFavorites()
-//     console.log("page is fully loaded");
-//   };
