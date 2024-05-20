@@ -46,7 +46,8 @@ async function pokemonList(req, res) {
     }
     });
     res.render("pokemonListpage", {pageTitle: "pokémon deck builder", data: pokemon})
-}
+};
+
 async function pokemonDetail(req, res) {
  
         const { name } = req.params; 
