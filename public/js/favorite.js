@@ -1,10 +1,10 @@
 const pokemonlist = document.querySelector('#pokemon-list');
-
-
+// const favoriteList = document.querySelector('#favorite-list');
+document.querySelector('#searchInput').addEventListener('keyup', fuzzySearch);
 
 if (pokemonlist){
     pokemonlist.addEventListener('click', async (e) => {
-        if (!e.target.matches('span')) {
+        if (!e.target.matches('a')) {
           return;
         }
         const favorite = e.target;
@@ -37,9 +37,26 @@ if (pokemonlist){
           }
         }
       });
+};
+
+function fuzzySearch(){
+    let input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('searchInput');
+    filter = input.value.toLowerCase();
+    ul = document.getElementById('pokemon-list');
+    li = ul.getElementsByTagName('li');
+
+    for (i = 0; i < li.length; i++){
+        a = li[i].getElementsByTagName('a')[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toLowerCase().indexOf(filter) > -1){
+            li[i].style.display = '';
+        } else {
+            li[i].style.display = 'none';
+        }
+    }
 }
 
-// moved to homecontroller
 // async function populateFavorites() {
 //     const response = await fetch('/api/favorite', {
 //         method: 'GET',
@@ -54,13 +71,8 @@ if (pokemonlist){
 //         let HTML = ""
 //         let data = await response.json()
 //         data.pokemonFavorites.forEach((p) => {
-//             p.pokemonId
+//             HTML += `<li>${p.pokemonName}</li>`
 //         })
+//         favoriteList.innerHTML = HTML
 //       }
 // };
-
-
-// window.onload = (event) => { 
-//     populateFavorites()
-//     console.log("page is fully loaded");
-//   };

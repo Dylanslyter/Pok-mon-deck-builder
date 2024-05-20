@@ -1,21 +1,35 @@
-    <main>
-        <h1>Pokedex</h1>
-        <div id="pokemon-list">
-           {{#each data}}
-    <div class= "pokemon-item-box">
-    {{!-- <a href ="/pokemon/{{name}}" >{{name}}</a>  --}}
-    <div class="pokemon-item">
-            <a href="/pokemon/{{name}}" class="pokemon-link">{{name}}</a>
-            {{#if favorited}}
-            <span data-favorited="true" style="color: yellow; fill: yellow" class="favorite-button" data-id="{{id}}" data-name="{{name}}">☆</span>
-            {{else}}
-            <span data-favorited="false" class="favorite-button" data-id="{{id}}" data-name="{{name}}">☆</span>
-            {{/if}}
-        </div>
-    </div>
-{{/each}}
-        </div>
-    </main>
+<main>
+  <h1>Pokedex</h1>
+  <input
+    type='text'
+    id='searchInput'
+    placeholder='Search for Pokemon'
+  />
+  <ul id='pokemon-list'>
+    {{#each data}}
+      <div class='pokemon-item-box'>
+        <li class='pokemon-item'>
+          <a href='/pokemon/{{name}}' class='pokemon-link'>{{name}}</a>
+          {{#if favorited}}
+            <a
+              data-favorited='true'
+              style='color: yellow; fill: yellow'
+              class='favorite-button'
+              data-id='{{id}}'
+              data-name='{{name}}'
+            >☆</a>
+          {{else}}
+            <a
+              data-favorited='false'
+              class='favorite-button'
+              data-id='{{id}}'
+              data-name='{{name}}'
+            >☆</a>
+          {{/if}}
+        </li>
+      </div>
+    {{/each}}
+  </ul>
+</main>
 
-
-<script src="/js/favorite.js"> </script>
+<script src='/js/favorite.js'> </script>

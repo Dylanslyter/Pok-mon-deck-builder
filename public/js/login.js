@@ -19,7 +19,7 @@ const loginFormHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
         if (response.ok) {
-            document.location.replace('/deck');
+            document.location.replace('/pokemon');
         } else {
             alert('Failed to log in');
         }
