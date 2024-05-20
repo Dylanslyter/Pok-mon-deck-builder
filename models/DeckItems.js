@@ -15,7 +15,7 @@ const { Sequelize, DataTypes } = require('sequelize');
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'deck',
+        model: 'decks',
         key: 'id'
       }
     },
