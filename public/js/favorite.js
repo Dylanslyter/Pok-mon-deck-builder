@@ -4,7 +4,7 @@ document.querySelector('#searchInput').addEventListener('keyup', fuzzySearch);
 
 if (pokemonlist){
     pokemonlist.addEventListener('click', async (e) => {
-        if (!e.target.matches('a')) {
+        if (!e.target.matches('a.favorite-button')) {
           return;
         }
         const favorite = e.target;
