@@ -2,25 +2,25 @@ const axios = require('axios');
 const { Favorite, Deck, DeckItems } = require('../models/index');
 
 async function signup(req, res) {
-    res.render("signuppage", {pageTitle: "pokémon deck builder"})
+    res.render("signuppage", {pageTitle: "Pokémon Team Builder"})
 }
 
 async function login(req, res) {
-    res.render("loginpage", {pageTitle: "pokémon deck builder"})
+    res.render("loginpage", {pageTitle: "Pokémon Team Builder"})
 }
 
 async function deck(req, res) {
     const deckList = await Deck.findAll({
         // order: [['pokemonId', 'ASC']],
     });
-    res.render("deckspage", {pageTitle: "pokémon deck builder", decks:deckList})
+    res.render("deckspage", {pageTitle: "Pokémon Team Builder", decks:deckList})
 }
 
 async function favorite(req, res) {
     const pokemonFavorites = await Favorite.findAll({
         order: [['pokemonId', 'ASC']],
       });
-    res.render("favoritespage", {pageTitle: "pokémon deck builder", favorites:pokemonFavorites })
+    res.render("favoritespage", {pageTitle: "Pokémon Team Builder", favorites:pokemonFavorites })
    
 }
 
@@ -45,7 +45,7 @@ async function pokemonList(req, res) {
         favorited: Boolean(myFavorites.find(favorite => favorite.pokemonId === id))
     }
     });
-    res.render("pokemonListpage", {pageTitle: "pokémon deck builder", data: pokemon})
+    res.render("pokemonListpage", {pageTitle: "Pokémon Team Builder", data: pokemon})
 };
 
 async function pokemonDetail(req, res) {
@@ -54,7 +54,7 @@ async function pokemonDetail(req, res) {
         const path = `https://pokeapi.co/api/v2/pokemon/${name}`;
         const response = await axios.get(path);
         console.log(response.data)
-        res.render("pokemonDetailpage", { pageTitle: "Pokémon Deck Builder", data:response.data });
+        res.render("pokemonDetailpage", { pageTitle: "Pokémon Team Builder", data:response.data });
 
 }
 module.exports = { signup, login, deck, pokemonList,
