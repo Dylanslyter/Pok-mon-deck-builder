@@ -42,7 +42,7 @@ async function pokemonList(req, res) {
         return {
         ...result,
         id,
-        favorited: Boolean(myFavorites.find(favorite => favorite.pokemonId == id))
+        favorited: Boolean(myFavorites.find(favorite => favorite.pokemonId === id))
     }
     });
     res.render("pokemonListpage", {pageTitle: "pokémon deck builder", data: pokemon})
