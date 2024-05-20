@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Favorite } = require('../models/index');
+const { Favorite, Deck, DeckItems } = require('../models/index');
 
 async function signup(req, res) {
     res.render("signuppage", {pageTitle: "pokémon deck builder"})
@@ -10,7 +10,10 @@ async function login(req, res) {
 }
 
 async function deck(req, res) {
-    res.render("deckspage", {pageTitle: "pokémon deck builder"})
+    const deckList = await Deck.findAll({
+        // order: [['pokemonId', 'ASC']],
+    });
+    res.render("deckspage", {pageTitle: "pokémon deck builder", decks:deckList})
 }
 
 async function favorite(req, res) {

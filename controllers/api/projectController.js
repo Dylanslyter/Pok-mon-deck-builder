@@ -1,6 +1,6 @@
 const axios = require('axios');
 const APIBase = 'https://pokeapi.co/api/v2/';
-const { User, Favorite } = require('../../models/index');
+const { User, Favorite, Deck, DeckItems } = require('../../models/index');
 
 async function fetchPokemonList(limit = 100000, offset = 0) {
   try {
@@ -44,35 +44,38 @@ async function addToFavorites(req, res) {
     });
     return res.json({ Message: 'Pokemon added to favorites!' });
   }
+};
+
+async function addToDeck(req,res) {
+    console.log(req.body);
+    const { deckId, pokemonName } = req.body;
+    await DeckItems.create({
+     deckId: deckId,
+     pokemonName: pokemonName
+    });
+};
+
+async function removeFromDeck(req,res) {
+    console.log(req.body);
+    const { deckId, pokemonName } = req.body;
+    await DeckItems.findOne.destroy({
+     deckId: deckId,
+     pokemonName: pokemonName
+    });
+};
+
+async function addDeck(req,res){
+    console.log(req.body);
+    const { name } = req.body;
+      await Deck.create({
+        userId: req.session.userId,
+        name: name
+      });
+      return res.json({ Message: 'Pokemon added to favorites!' });
+    
 }
 
 
+module.exports = { deckList, addToFavorites, addToDeck, addDeck, removeFromDeck };
 
-// async function getFavorites(req, res) {
-//   const favorites = req.user.favorites || [];
-//   const favoritePokemon = await Promise.all(
-//     favorites.map(async (id) => {
-//       const response = await axios.get(`${APIBase}pokemon/${id}`);
-//       return response.data;
-//     }),
-//   );
 
-//   res.json(favoritePokemon);
-// }
-
-module.exports = { deckList, addToFavorites };
-
-// async function deckList(req, res) {
-//     try {
-//         const base = "https://pokeapi.co/api/v2/";
-//         const path = "pokemon?limit=100000&offset=0";
-
-//         const response = await axios.get(`${base}${path}`);
-//         const data = response.data;
-
-//         res.json(data);
-//     } catch (error) {
-//         console.error('Error fetching data from API:', error);
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// }
